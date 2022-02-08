@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-RUN apt-get update
-RUN apt-get install -y wget sudo curl
-RUN sh <(curl -s https://smartpy.io/cli/install.sh)
-RUN chmod +x ~/smartpy-cli/SmartPy.sh
+RUN apk add --update npm bash curl python3
+RUN /bin/bash -c "sh <(curl -s https://smartpy.io/cli/install.sh) local-install ~/smartpy-cli"
+RUN /bin/bash -c "chmod +x ~/smartpy-cli/SmartPy.sh"
+ENTRYPOINT [ "/root/smartpy-cli/SmartPy.sh" 
