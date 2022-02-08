@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM alpine:latest
 
 RUN apk add --update npm bash curl python3
 RUN /bin/bash -c "sh <(curl -s https://smartpy.io/cli/install.sh) local-install ~/smartpy-cli"
