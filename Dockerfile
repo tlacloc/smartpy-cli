@@ -7,16 +7,18 @@ RUN apt-get install -y python3
 RUN apt-get install -y nodejs 
 RUN apt-get install -y npm 
 
-# download latest nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-# after installing restart shell or add export variables for nvm to work
-
-ENV NVM_DIR=/root/.nvm
+# update node version to 16.13.1
 ENV NODE_VERSION=16.13.1
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+RUN node --version
+RUN npm --version
 
-# then install the newer node version
-RUN . $HOME/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default
-
+# install smartpy libraries
 RUN curl -s https://smartpy.io/cli/install.sh -o ~/smartpy_installer.sh
 RUN echo 'y' | bash ~/smartpy_installer.sh
 RUN chmod +x ~/smartpy-cli/SmartPy.sh
