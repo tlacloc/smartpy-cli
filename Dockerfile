@@ -22,5 +22,3 @@ RUN npm --version
 RUN curl -s https://smartpy.io/cli/install.sh -o ~/smartpy_installer.sh
 RUN echo 'y' | bash ~/smartpy_installer.sh
 RUN chmod +x ~/smartpy-cli/SmartPy.sh
-
-USER root
