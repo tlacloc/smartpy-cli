@@ -14,11 +14,4 @@ RUN echo 'y' | bash ~/smartpy_installer.sh
 
 RUN chmod +x ~/smartpy-cli/SmartPy.sh
 
-RUN ~/smartpy-cli/SmartPy.sh --version
-
-
-CMD [~/smartpy-cli/SmartPy.sh --version, version] 
-
-
-CMD ~/smartpy-cli/SmartPy.sh --version
 ENTRYPOINT [ "/root/smartpy-cli/SmartPy.sh" ] 
