@@ -11,10 +11,11 @@ RUN apt-get install -y npm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 # after installing restart shell or add export variables for nvm to work
 
-# restart bash
-RUN source /root/.bashrc
+ENV NVM_DIR=/root/.nvm
+ENV NODE_VERSION=16.13.1
+
 # then install the newer node version
-RUN nvm install 16.13.1
+RUN . $HOME/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION && nvm use default
 
 RUN curl -s https://smartpy.io/cli/install.sh -o ~/smartpy_installer.sh
 RUN echo 'y' | bash ~/smartpy_installer.sh
