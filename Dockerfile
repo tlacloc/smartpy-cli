@@ -11,6 +11,8 @@ RUN apt-get install -y npm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 # after installing restart shell or add export variables for nvm to work
 
+# restart bash
+RUN source ~/.bashrc
 # then install the newer node version
 RUN nvm install 16.13.1
 
